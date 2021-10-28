@@ -11,7 +11,7 @@ public class WordReader {
             while (sc.hasNextLine()) {
                 String word = sc.nextLine();
                 String[] newWords = new String[wordsFromFile.length + 1];
-                for (int i = 0; i < wordReader().length; i++) {
+                for (int i = 0; i < wordsFromFile.length; i++) {
                     newWords[i] = wordsFromFile[i];
                 }
                 newWords[wordsFromFile.length] = word;
