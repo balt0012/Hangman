@@ -8,6 +8,15 @@ public class Main {
         int lives = 6;
 
         while (lives > 0){
+            System.out.println("");
+            for (int i = 0; i < wordToGuess.length(); i++) {
+                char charToWrite = wordToGuess.charAt(i);
+                if(guessedLetters.contains(String.valueOf(charToWrite))){
+                    System.out.print(charToWrite);
+                }else{
+                    System.out.print("_");
+                }
+            }
 
         }
     }
