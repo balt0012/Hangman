@@ -3,36 +3,58 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String wordToGuess = "string";
-        String guessedLetters = "";
-        int lives = 6;
+        String continuePlaying = "n";
+        do {
+            String wordToGuess = "string";
+            String guessedLetters = "";
+            String alphabet = "abcdefghijklmnopqrstuvwxyz";
+            int lives = 6;
+            boolean win = false;
 
-        while (lives > 0){
-            System.out.println("");
-            for (int i = 0; i < wordToGuess.length(); i++) {
-                char charToWrite = wordToGuess.charAt(i);
-                if(guessedLetters.contains(String.valueOf(charToWrite))){
-                    System.out.print(charToWrite);
-                }else{
-                    System.out.print("_");
+            while (lives > 0 && win == false) {
+                System.out.println("");
+                win = true;
+                for (int i = 0; i < wordToGuess.length(); i++) {
+                    char charToWrite = wordToGuess.charAt(i);
+                    if (guessedLetters.contains(String.valueOf(charToWrite))) {
+                        System.out.print(charToWrite);
+                    } else {
+                        System.out.print("_");
+                        win = false;
+                    }
+                }
+                if (win == false) {
+                    System.out.println("");
+                    System.out.println("you have " + lives + " lives");
+                    System.out.println("you have guessed " + guessedLetters);
+                    System.out.println("guess a letter");
+                    String guessedLetter = scanner.nextLine();
+                    if (guessedLetter.length() == 1 && alphabet.contains(guessedLetter)) {
+                        if (!guessedLetters.contains(guessedLetter)) {
+                            guessedLetters = guessedLetters.concat(guessedLetter);
+                            if (wordToGuess.contains(guessedLetter)) {
+                                System.out.println("letter is in the word, good guess!");
+                            } else {
+                                System.out.println("letter is not in word, bad guess");
+                                lives -= 1;
+                            }
+                        } else {
+                            System.out.println("letter already guessed");
+                        }
+                    } else {
+                        System.out.println("invalid guess");
+                    }
                 }
             }
-
-        }
-    }
-
-    public static String guessLetter(String letter, String guessedLetters, String wordToGuess, int lives){
-        if(!guessedLetters.contains(letter)){
-            guessedLetters.concat(letter);
-            if(wordToGuess.contains(letter)){
-                System.out.println("letter is in the word, good guess!");
-            } else {
-                System.out.println("letter is not in word, bad guess");
-                lives -= 1;
+            if (win == true) {
+                System.out.println("");
+                System.out.println("you win!");
+            } else if (lives == 0) {
+                System.out.println("");
+                System.out.println("you lose");
             }
-        } else {
-            System.out.println("letter already guessed");
-        }
-        return guessedLetters;
+            System.out.println("do you want to play again? (y/n)");
+            continuePlaying = scanner.nextLine();
+        } while (continuePlaying.equals("y"));
     }
 }
