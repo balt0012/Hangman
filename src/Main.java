@@ -1,11 +1,14 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
         String continuePlaying = "n";
+        String[] wordsFromFile = WordReader.wordReader();
         do {
-            String wordToGuess = "string";
+            String wordToGuess = wordsFromFile[random.nextInt(wordsFromFile.length)];
             String guessedLetters = "";
             String alphabet = "abcdefghijklmnopqrstuvwxyz";
             int lives = 6;
