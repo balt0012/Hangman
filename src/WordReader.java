@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class WordReader {
+    //returns all the words from the "words.csv" file as an array of strings
     public static String[] wordReader() {
         String[] wordsFromFile = {};
         try {
